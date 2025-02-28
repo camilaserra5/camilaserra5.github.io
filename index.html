@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Innox | Soluciones Digitales para Emprendedores</title>
+    <style>
+      :root {
+        --mint: #c7eae4;
+        --celadon: #a7e8bd;
+        --melon-light: #fcbcb8;
+        --melon: #efa7a7;
+        --jasmine: #ffd972;
+        --dark: #333333;
+        --light: #ffffff;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(30px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideInRight {
+        from {
+          transform: translateX(50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes scaleIn {
+        from {
+          transform: scale(0.9);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      body {
+        background-color: var(--light);
+        color: var(--dark);
+        line-height: 1.6;
+      }
+
+      header {
+        background-color: var(--mint);
+        padding: 1.5rem;
+        animation: fadeIn 0.8s ease-out forwards;
+      }
+
+      nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .logo {
+        font-weight: 700;
+        font-size: 1.8rem;
+        color: var(--dark);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        animation: slideInRight 0.8s ease-out forwards;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: var(--melon);
+      }
+
+      .hero {
+        background-color: var(--mint);
+        padding: 5rem 1.5rem;
+        text-align: left;
+        position: relative;
+        overflow: hidden;
+        color: var(--dark);
+      }
+
+      .hero-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        max-width: 700px;
+        animation: slideUp 0.8s ease-out forwards;
+        animation-delay: 0.2s;
+        opacity: 0;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin-bottom: 2rem;
+        animation: slideUp 0.8s ease-out forwards;
+        animation-delay: 0.4s;
+        opacity: 0;
+      }
+
+      .hero .btn {
+        animation: slideUp 0.8s ease-out forwards;
+        animation-delay: 0.6s;
+        opacity: 0;
+      }
+
+      .shapes {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50%;
+        height: 100%;
+        z-index: 1;
+      }
+
+      .shape {
+        position: absolute;
+        border-radius: 50%;
+        animation: scaleIn 0.8s ease-out forwards;
+        opacity: 0;
+      }
+
+      .shape-1 {
+        width: 150px;
+        height: 150px;
+        background-color: var(--celadon);
+        top: 20%;
+        right: 20%;
+        animation-delay: 0.3s;
+        animation-fill-mode: forwards;
+      }
+
+      .shape-2 {
+        width: 100px;
+        height: 100px;
+        background-color: var(--melon-light);
+        top: 50%;
+        right: 35%;
+        animation-delay: 0.5s;
+        animation-fill-mode: forwards;
+      }
+
+      .shape-3 {
+        width: 80px;
+        height: 80px;
+        background-color: var(--jasmine);
+        top: 30%;
+        right: 5%;
+        animation-delay: 0.7s;
+        animation-fill-mode: forwards;
+      }
+
+      .shape-4 {
+        width: 120px;
+        height: 120px;
+        background-color: var(--melon);
+        bottom: 20%;
+        right: 25%;
+        border-radius: 0;
+        transform: rotate(45deg);
+        animation-delay: 0.9s;
+        animation-fill-mode: forwards;
+      }
+
+      .shape-1,
+      .shape-3 {
+        animation: scaleIn 0.8s ease-out forwards, float 6s ease-in-out infinite;
+      }
+
+      .shape-2,
+      .shape-4 {
+        animation: scaleIn 0.8s ease-out forwards,
+          float 8s ease-in-out infinite reverse;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 5rem 1.5rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        position: relative;
+        opacity: 0;
+        animation: slideUp 0.8s ease-out forwards;
+      }
+
+      .section-subtitle {
+        font-size: 1.2rem;
+        color: var(--celadon);
+        margin-bottom: 3rem;
+        font-weight: 600;
+        opacity: 0;
+        animation: slideUp 0.8s ease-out forwards;
+        animation-delay: 0.2s;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .service-card {
+        background: var(--light);
+        border-radius: 8px;
+        padding: 2rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+        animation: scaleIn 0.8s ease-out forwards;
+        transform-origin: center bottom;
+      }
+
+      .service-card:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+
+      .service-card:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      .service-card:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+
+      .service-card:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+
+      .service-card:nth-child(5) {
+        animation-delay: 0.5s;
+      }
+
+      .service-card:nth-child(6) {
+        animation-delay: 0.6s;
+      }
+
+      .service-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+      }
+
+      .service-card:nth-child(1)::before {
+        background-color: var(--mint);
+      }
+
+      .service-card:nth-child(2)::before {
+        background-color: var(--celadon);
+      }
+
+      .service-card:nth-child(3)::before {
+        background-color: var(--melon-light);
+      }
+
+      .service-card:nth-child(4)::before {
+        background-color: var(--melon);
+      }
+
+      .service-card:nth-child(5)::before {
+        background-color: var(--jasmine);
+      }
+
+      .service-card:nth-child(6)::before {
+        background-color: var(--mint);
+      }
+
+      .service-card:hover {
+        transform: translateY(-15px) scale(1.05);
+        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .service-card:hover::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(
+          90deg,
+          var(--mint),
+          var(--melon),
+          var(--jasmine)
+        );
+        animation: shimmer 2s infinite linear;
+      }
+
+      @keyframes shimmer {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .service-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .service-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        transition: color 0.3s ease;
+      }
+
+      /* Agregamos reglas específicas para cada tarjeta */
+      .service-card:nth-child(1):hover .service-title {
+        color: var(--mint);
+      }
+
+      .service-card:nth-child(2):hover .service-title {
+        color: var(--celadon);
+      }
+
+      .service-card:nth-child(3):hover .service-title {
+        color: var(--melon-light);
+      }
+
+      .service-card:nth-child(4):hover .service-title {
+        color: var(--melon);
+      }
+
+      .service-card:nth-child(5):hover .service-title {
+        color: var(--jasmine);
+      }
+
+      .service-card:nth-child(6):hover .service-title {
+        color: var(--mint);
+      }
+
+      .cta {
+        background-color: var(--jasmine);
+        padding: 5rem 1.5rem;
+        text-align: center;
+        color: var(--dark);
+      }
+
+      .cta-content {
+        max-width: 700px;
+        margin: 0 auto;
+        opacity: 0;
+        animation: fadeIn 1s ease-out forwards;
+        animation-delay: 0.3s;
+      }
+
+      .cta h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .cta p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+      }
+
+      .btn {
+        display: inline-block;
+        background-color: var(--melon);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(239, 167, 167, 0.3);
+      }
+
+      .btn:hover {
+        background-color: var(--melon-light);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(239, 167, 167, 0.4);
+      }
+
+      .whatsapp-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        background-color: var(--celadon);
+        color: var(--dark);
+        box-shadow: 0 5px 15px rgba(167, 232, 189, 0.3);
+      }
+
+      .whatsapp-btn:hover {
+        background-color: #94d9aa;
+        box-shadow: 0 10px 20px rgba(167, 232, 189, 0.4);
+      }
+
+      footer {
+        background-color: var(--mint);
+        color: var(--dark);
+        padding: 3rem 1.5rem 1.5rem;
+      }
+
+      .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+        gap: 2rem;
+      }
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 700;
+        font-size: 1.2rem;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .footer-links a {
+        text-decoration: none;
+        color: var(--dark);
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: var(--melon);
+      }
+
+      .footer-social {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .footer-social a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: var(--dark);
+        transition: all 0.3s ease;
+      }
+
+      .footer-social a:hover {
+        background-color: var(--celadon);
+        color: var(--dark);
+        transform: translateY(-3px);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .testimonials {
+        background-color: #f9f9f9;
+        padding: 5rem 1.5rem;
+      }
+
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .testimonial-card {
+        background: var(--light);
+        border-radius: 8px;
+        padding: 2rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .testimonial-text {
+        font-style: italic;
+        margin-bottom: 1.5rem;
+      }
+
+      .testimonial-author {
+        font-weight: 600;
+      }
+
+      .testimonial-business {
+        color: var(--melon);
+        font-size: 0.9rem;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 768px) {
+        nav {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .nav-links {
+          gap: 1rem;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .shapes {
+          opacity: 0.5;
+        }
+
+        .footer-content {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="#" class="logo">
+          <img src="logo.png" alt="Innox Logo" width="40" height="40" />
+          Innox
+        </a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Soluciones digitales simples y efectivas</h1>
+        <p>
+          Transformamos tu emprendimiento con tecnología accesible y a la medida
+          de tus necesidades
+        </p>
+        <a href="https://wa.me/5491169674038" class="btn"
+          >Hablemos de tu proyecto</a
+        >
+      </div>
+      <div class="shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+      </div>
+    </section>
+
+    <section id="servicios" class="container">
+      <h2 class="section-title">Nuestros Servicios</h2>
+      <p class="section-subtitle">
+        Soluciones digitales profesionales para emprendedores como vos
+      </p>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">💻</div>
+          <h3 class="service-title">Sitios Web & Landing Pages</h3>
+          <p>
+            Diseño y desarrollo de sitios web de todo tipo, desde simples
+            landing pages hasta plataformas más complejas adaptadas a tus
+            necesidades.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🛒</div>
+          <h3 class="service-title">E-commerce</h3>
+          <p>
+            Tiendas online completas y personalizadas para que puedas vender tus
+            productos con facilidad y gestionar tu inventario eficientemente.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">💳</div>
+          <h3 class="service-title">Integración con Mercado Pago</h3>
+          <p>
+            Implementación de pasarelas de pago seguras para facilitar las
+            transacciones en tu negocio digital sin complicaciones técnicas.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">📱</div>
+          <h3 class="service-title">Aplicaciones Móviles</h3>
+          <p>
+            Desarrollo de apps nativas y multiplataforma para iOS y Android que
+            mejoran la experiencia de tus usuarios y potencian tu negocio.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">📅</div>
+          <h3 class="service-title">Sistemas de Turnos Online</h3>
+          <p>
+            Integración de servicios de reservas y gestión de citas para
+            optimizar tu tiempo y mejorar la experiencia de tus clientes.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">📊</div>
+          <h3 class="service-title">Analytics & SEO</h3>
+          <p>
+            Implementación de herramientas de análisis y optimización para
+            buscadores que te permitan entender a tu audiencia y aumentar tu
+            visibilidad online.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="cta">
+      <div class="cta-content">
+        <h2>¿Conversamos sobre tu proyecto?</h2>
+        <p>
+          Estamos listos para transformar tus ideas en realidad con soluciones
+          simples y efectivas. Contactanos ahora para una consulta gratuita.
+        </p>
+        <a href="https://wa.me/5491169674038" class="btn whatsapp-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="#333333"
+          >
+            <path
+              d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.18 2.095 3.195 5.076 4.483.709.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+            />
+          </svg>
+          Escribinos por WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-content">
+          <div class="footer-logo"></div>
+          <div>
+            <p>&copy; 2025 Innox | Soluciones Digitales para Emprendedores</p>
+          </div>
+          <div class="footer-social"></div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        function revealOnScroll() {
+          var reveals = document.querySelectorAll(".reveal");
+
+          for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            var elementVisible = 150;
+
+            if (elementTop < windowHeight - elementVisible) {
+              reveals[i].classList.add("active");
+            }
+          }
+        }
+
+        document
+          .querySelectorAll(
+            ".section-title, .section-subtitle, .service-card, .cta-content"
+          )
+          .forEach(function (el) {
+            el.classList.add("reveal");
+          });
+
+        revealOnScroll();
+
+        window.addEventListener("scroll", revealOnScroll);
+      });
+    </script>
+  </body>
+</html>
