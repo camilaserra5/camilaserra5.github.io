@@ -12,7 +12,15 @@
         --melon: #efa7a7;
         --jasmine: #ffd972;
         --dark: #333333;
+        --darker: #222222;
         --light: #ffffff;
+
+        /* Text colors for each theme */
+        --mint-text: #4f7871;
+        --celadon-text: #456951;
+        --melon-light-text: #6b4542;
+        --melon-text: #694141;
+        --jasmine-text: #6e603c;
       }
 
       * {
@@ -249,7 +257,7 @@
 
       .section-subtitle {
         font-size: 1.2rem;
-        color: var(--celadon);
+        color: var(--celadon-text);
         margin-bottom: 3rem;
         font-weight: 600;
         opacity: 0;
@@ -379,27 +387,27 @@
 
       /* Agregamos reglas específicas para cada tarjeta */
       .service-card:nth-child(1):hover .service-title {
-        color: var(--mint);
+        color: var(--mint-text);
       }
 
       .service-card:nth-child(2):hover .service-title {
-        color: var(--celadon);
+        color: var(--celadon-text);
       }
 
       .service-card:nth-child(3):hover .service-title {
-        color: var(--melon-light);
+        color: var(--melon-light-text);
       }
 
       .service-card:nth-child(4):hover .service-title {
-        color: var(--melon);
+        color: var(--melon-text);
       }
 
       .service-card:nth-child(5):hover .service-title {
-        color: var(--jasmine);
+        color: var(--jasmine-text);
       }
 
       .service-card:nth-child(6):hover .service-title {
-        color: var(--mint);
+        color: var(--mint-text);
       }
 
       .cta {
@@ -560,7 +568,7 @@
       }
 
       .testimonial-business {
-        color: var(--melon);
+        color: var(--melon-text);
         font-size: 0.9rem;
       }
 
@@ -573,6 +581,53 @@
       .reveal.active {
         opacity: 1;
         transform: translateY(0);
+      }
+
+      /* Add new styles for scroll animation on cards */
+      .service-card.active {
+        transform: translateY(-15px) scale(1.05);
+        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .service-card.active::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(
+          90deg,
+          var(--mint),
+          var(--melon),
+          var(--jasmine)
+        );
+        animation: shimmer 2s infinite linear;
+      }
+
+      /* Add specific color styles for active cards */
+      .service-card:nth-child(1).active .service-title {
+        color: var(--mint-text);
+      }
+
+      .service-card:nth-child(2).active .service-title {
+        color: var(--celadon-text);
+      }
+
+      .service-card:nth-child(3).active .service-title {
+        color: var(--melon-light-text);
+      }
+
+      .service-card:nth-child(4).active .service-title {
+        color: var(--melon-text);
+      }
+
+      .service-card:nth-child(5).active .service-title {
+        color: var(--jasmine-text);
+      }
+
+      .service-card:nth-child(6).active .service-title {
+        color: var(--mint-text);
       }
 
       @media (max-width: 768px) {
@@ -597,6 +652,66 @@
           flex-direction: column;
           align-items: center;
           text-align: center;
+        }
+
+        /* Improve mobile experience */
+        .services-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .hero {
+          padding: 3rem 1rem;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+          margin-bottom: 1rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .container {
+          padding: 3rem 1rem;
+        }
+
+        .section-title {
+          font-size: 1.8rem;
+        }
+
+        .section-subtitle {
+          font-size: 1rem;
+          margin-bottom: 2rem;
+        }
+
+        .btn {
+          padding: 0.8rem 1.5rem;
+          font-size: 0.9rem;
+        }
+
+        .cta {
+          padding: 3rem 1rem;
+        }
+
+        .cta h2 {
+          font-size: 1.8rem;
+        }
+      }
+
+      /* Add styles for smaller mobile devices */
+      @media (max-width: 480px) {
+        .hero h1 {
+          font-size: 1.8rem;
+        }
+
+        .service-icon {
+          font-size: 2rem;
+        }
+
+        .service-title {
+          font-size: 1.3rem;
         }
       }
     </style>
@@ -733,8 +848,12 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        // Check if device is mobile
+        let isMobile = window.innerWidth <= 768;
+
         function revealOnScroll() {
           var reveals = document.querySelectorAll(".reveal");
+          var serviceCards = document.querySelectorAll(".service-card");
 
           for (var i = 0; i < reveals.length; i++) {
             var windowHeight = window.innerHeight;
@@ -745,12 +864,34 @@
               reveals[i].classList.add("active");
             }
           }
+
+          // Add scroll animation for service cards only on mobile
+          if (isMobile) {
+            for (var i = 0; i < serviceCards.length; i++) {
+              var windowHeight = window.innerHeight;
+              var elementTop = serviceCards[i].getBoundingClientRect().top;
+              var elementCenter = elementTop + serviceCards[i].offsetHeight / 2;
+
+              // Check if card is in the center of viewport
+              if (
+                elementCenter > windowHeight * 0.3 &&
+                elementCenter < windowHeight * 0.7
+              ) {
+                serviceCards[i].classList.add("active");
+              } else {
+                serviceCards[i].classList.remove("active");
+              }
+            }
+          } else {
+            // Remove active class from all cards on desktop
+            serviceCards.forEach(function (card) {
+              card.classList.remove("active");
+            });
+          }
         }
 
         document
-          .querySelectorAll(
-            ".section-title, .section-subtitle, .service-card, .cta-content"
-          )
+          .querySelectorAll(".section-title, .section-subtitle, .cta-content")
           .forEach(function (el) {
             el.classList.add("reveal");
           });
@@ -758,6 +899,12 @@
         revealOnScroll();
 
         window.addEventListener("scroll", revealOnScroll);
+
+        // Update isMobile value on window resize
+        window.addEventListener("resize", function () {
+          isMobile = window.innerWidth <= 768;
+          revealOnScroll();
+        });
       });
     </script>
   </body>
