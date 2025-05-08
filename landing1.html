@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Studio Pilates</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      :root {
+        --primary-color: #2d3436;
+        --accent-color: #e17055;
+        --bg-light: #f8f5f2;
+        --text-color: #4a4a4a;
+        --spacing-xl: 8rem;
+        --spacing-lg: 5rem;
+        --spacing-md: 2rem;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        line-height: 1.8;
+        color: var(--text-color);
+        font-family: "Montserrat", sans-serif;
+        background-color: #fff;
+      }
+
+      .header {
+        background-color: rgba(255, 255, 255, 0.95);
+        padding: 1.2rem;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        backdrop-filter: blur(10px);
+      }
+
+      nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-family: "Playfair Display", serif;
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        letter-spacing: 1px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 3rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--primary-color);
+        font-size: 0.95rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: var(--accent-color);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      section {
+        padding: var(--spacing-xl) var(--spacing-md);
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .hero {
+        height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          url("https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: white;
+        margin-bottom: 0;
+        position: relative;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 150px;
+        background: linear-gradient(to top, #fff, transparent);
+      }
+
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+        max-width: 700px;
+        margin: 0 auto;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 3rem;
+        margin-bottom: var(--spacing-md);
+        text-align: center;
+        color: var(--primary-color);
+        position: relative;
+        padding-bottom: 20px;
+      }
+
+      h2::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: var(--accent-color);
+      }
+
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2.5rem;
+        margin-top: var(--spacing-lg);
+      }
+
+      .benefit-card {
+        background: #fff;
+        padding: 2.5rem;
+        border-radius: 15px;
+        text-align: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .benefit-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .benefit-card h3 {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        font-family: "Playfair Display", serif;
+      }
+
+      .how-we-work {
+        background-color: var(--bg-light);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .work-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2.5rem;
+      }
+
+      .step {
+        padding: 2.5rem;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      .step:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+
+      .step h3 {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        font-family: "Playfair Display", serif;
+      }
+
+      .contact {
+        text-align: center;
+        background: linear-gradient(to bottom, #fff, var(--bg-light));
+      }
+
+      .contact-form {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 3rem;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 1.2rem;
+        margin-bottom: 1.2rem;
+        border: 2px solid #eee;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border-color: var(--accent-color);
+      }
+
+      button {
+        background-color: var(--accent-color);
+        color: white;
+        border: none;
+        padding: 1.2rem 3rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+      }
+
+      button:hover {
+        background-color: #d15a45;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(225, 112, 85, 0.3);
+      }
+
+      .contact-options {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .whatsapp-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        background-color: #25d366;
+        color: white;
+        text-decoration: none;
+        padding: 1.2rem 2.5rem;
+        border-radius: 8px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+      }
+
+      .whatsapp-button:hover {
+        background-color: #128c7e;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+      }
+
+      @media (max-width: 768px) {
+        :root {
+          --spacing-xl: 5rem;
+          --spacing-lg: 3rem;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .hero {
+          height: 100vh;
+          padding: 0 1rem;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+          padding: 0 1rem;
+          margin-bottom: 2rem;
+        }
+
+        .hero p {
+          font-size: 1.1rem;
+          padding: 0 1rem;
+        }
+
+        h2 {
+          font-size: 2.5rem;
+        }
+
+        .contact-form {
+          padding: 2rem;
+        }
+      }
+
+      /* Agregamos breakpoint adicional para pantallas más pequeñas */
+      @media (max-width: 480px) {
+        .hero {
+          height: 100vh;
+          padding: 0 0.5rem;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+          padding: 0 0.5rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+          padding: 0 0.5rem;
+        }
+
+        section {
+          padding: var(--spacing-lg) var(--spacing-md);
+        }
+
+        .benefit-card,
+        .step {
+          padding: 1.5rem;
+        }
+
+        .whatsapp-button {
+          padding: 1rem 1.5rem;
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <nav>
+        <div class="logo">Studio Pilates</div>
+        <div class="nav-links">
+          <a href="#que-es">¿Qué es Pilates?</a>
+          <a href="#beneficios">Beneficios</a>
+          <a href="#como-trabajamos">Cómo Trabajamos</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div data-aos="fade-up" data-aos-duration="1200">
+        <h1>Transforma tu cuerpo y mente con Pilates</h1>
+        <p>
+          Descubre una forma única de ejercicio que mejorará tu fuerza,
+          flexibilidad y bienestar general
+        </p>
+      </div>
+    </section>
+
+    <section id="que-es">
+      <div data-aos="fade-up" data-aos-duration="1000">
+        <h2>¿Qué es Pilates?</h2>
+        <p>
+          El método Pilates es un sistema de ejercicios diseñado para mejorar la
+          fuerza física, la flexibilidad y la postura. Desarrollado por Joseph
+          Pilates, este método se centra en el control muscular, la respiración
+          y la precisión de los movimientos. Cada ejercicio está pensado para
+          fortalecer el centro de energía del cuerpo, lo que llamamos
+          "powerhouse".
+        </p>
+      </div>
+    </section>
+
+    <section id="beneficios">
+      <h2 data-aos="fade-up">Beneficios</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card" data-aos="fade-up" data-aos-delay="100">
+          <h3>Mejor Postura</h3>
+          <p>
+            Fortalece los músculos centrales y mejora el alineamiento corporal
+          </p>
+        </div>
+        <div class="benefit-card" data-aos="fade-up" data-aos-delay="200">
+          <h3>Flexibilidad</h3>
+          <p>Aumenta el rango de movimiento y la elasticidad muscular</p>
+        </div>
+        <div class="benefit-card" data-aos="fade-up" data-aos-delay="300">
+          <h3>Reducción del Estrés</h3>
+          <p>Promueve la relajación y el bienestar mental</p>
+        </div>
+        <div class="benefit-card" data-aos="fade-up" data-aos-delay="400">
+          <h3>Fuerza Core</h3>
+          <p>Desarrolla un centro fuerte y estable</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="como-trabajamos" class="how-we-work">
+      <h2 data-aos="fade-up">Cómo Trabajamos</h2>
+      <div class="work-steps">
+        <div class="step" data-aos="fade-right" data-aos-delay="100">
+          <h3>Evaluación Inicial</h3>
+          <p>
+            Realizamos una evaluación completa para entender tus necesidades y
+            objetivos
+          </p>
+        </div>
+        <div class="step" data-aos="fade-up" data-aos-delay="200">
+          <h3>Clases Personalizadas</h3>
+          <p>
+            Diseñamos un programa adaptado a tu nivel y necesidades específicas
+          </p>
+        </div>
+        <div class="step" data-aos="fade-left" data-aos-delay="300">
+          <h3>Seguimiento Continuo</h3>
+          <p>
+            Monitoreamos tu progreso y ajustamos el programa según sea necesario
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="contact">
+      <div data-aos="zoom-in">
+        <h2>Contacto</h2>
+        <div class="contact-form">
+          <form>
+            <input type="text" placeholder="Nombre" required />
+            <input type="email" placeholder="Email" required />
+            <textarea placeholder="Mensaje" rows="5" required></textarea>
+            <button type="submit">Enviar Mensaje</button>
+          </form>
+        </div>
+        <div class="contact-options">
+          <a
+            href="https://wa.me/TUNUMERO"
+            class="whatsapp-button"
+            target="_blank"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"
+              />
+            </svg>
+            Contáctanos por WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        once: false,
+        mirror: true,
+        duration: 1000,
+        offset: 100,
+      });
+    </script>
+  </body>
+</html>

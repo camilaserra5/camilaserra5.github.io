@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INK SOCIETY • Estudio de Tatuajes</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      :root {
+        --primary-color: #272838;
+        --accent-color: #eb9486;
+        --secondary-color: #7e7f9a;
+        --detail-color: #f3de8a;
+        --bg-dark: #272838;
+        --text-color: #f9f8f8;
+        --gray-color: #7e7f9a;
+        --spacing-xl: 8rem;
+        --spacing-lg: 5rem;
+        --spacing-md: 2rem;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        line-height: 1.8;
+        color: var(--text-color);
+        font-family: "Outfit", sans-serif;
+        background-color: var(--bg-dark);
+        letter-spacing: 0.5px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 600;
+      }
+
+      .header {
+        background-color: rgba(39, 40, 56, 0.95);
+        padding: 1.5rem;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 1px solid rgba(235, 148, 134, 0.1);
+      }
+
+      nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--accent-color);
+        letter-spacing: 3px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 4rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text-color);
+        font-size: 0.9rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: all 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--accent-color);
+      }
+
+      section {
+        padding: var(--spacing-xl) var(--spacing-md);
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: linear-gradient(
+            rgba(39, 40, 56, 0.8),
+            rgba(39, 40, 56, 0.8)
+          ),
+          url("https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        margin-top: 0;
+        position: relative;
+      }
+
+      .hero h1 {
+        font-size: 5rem;
+        margin-bottom: 2rem;
+        line-height: 1.1;
+        text-transform: uppercase;
+        letter-spacing: 5px;
+        color: var(--detail-color);
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        color: var(--text-color);
+        font-weight: 300;
+        letter-spacing: 1px;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .section-title h2 {
+        font-size: 3.5rem;
+        color: var(--accent-color);
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+      }
+
+      .section-title p {
+        color: var(--gray-color);
+        font-size: 1.1rem;
+        font-weight: 300;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+
+      .portfolio-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        aspect-ratio: 1;
+      }
+
+      .portfolio-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+
+      .portfolio-title {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(
+          to top,
+          rgba(39, 40, 56, 0.95),
+          transparent
+        );
+        color: var(--text-color);
+        padding: 2rem;
+        text-align: left;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s ease;
+      }
+
+      .portfolio-title h3 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+        color: var(--detail-color);
+      }
+
+      .portfolio-title p {
+        font-size: 0.9rem;
+        color: var(--text-color);
+      }
+
+      .portfolio-item:hover .portfolio-title {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .portfolio-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .services-section {
+        background: linear-gradient(
+          45deg,
+          rgba(235, 148, 134, 0.05),
+          rgba(126, 127, 154, 0.05)
+        );
+        border: 1px solid rgba(235, 148, 134, 0.1);
+        border-radius: 8px;
+        padding: 5rem;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 3rem;
+      }
+
+      .service-card {
+        background: rgba(39, 40, 56, 0.3);
+        padding: 2.5rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(235, 148, 134, 0.1);
+        border-radius: 8px;
+      }
+
+      .service-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--accent-color);
+        background: rgba(39, 40, 56, 0.5);
+      }
+
+      .service-card h3 {
+        color: var(--detail-color);
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .service-card p {
+        color: var(--text-color);
+        font-size: 1rem;
+        line-height: 1.8;
+      }
+
+      .contact-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        background: linear-gradient(
+          45deg,
+          rgba(235, 148, 134, 0.05),
+          rgba(126, 127, 154, 0.05)
+        );
+        border: 1px solid rgba(235, 148, 134, 0.1);
+        padding: 5rem;
+        border-radius: 8px;
+      }
+
+      .contact-form {
+        background: transparent;
+        padding: 0;
+      }
+
+      .contact-form h3 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        color: var(--detail-color);
+      }
+
+      .form-group {
+        margin-bottom: 2rem;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 1.2rem;
+        background: rgba(39, 40, 56, 0.3);
+        border: 1px solid rgba(235, 148, 134, 0.2);
+        border-radius: 8px;
+        color: var(--text-color);
+        font-size: 1rem;
+        font-family: "Outfit", sans-serif;
+        transition: all 0.3s ease;
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border-color: var(--accent-color);
+        background: rgba(39, 40, 56, 0.5);
+      }
+
+      button {
+        background-color: var(--accent-color);
+        color: var(--text-color);
+        border: none;
+        padding: 1.2rem 3rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 8px;
+      }
+
+      button:hover {
+        background-color: var(--detail-color);
+        transform: translateY(-2px);
+      }
+
+      .contact-info {
+        padding-left: 2rem;
+        border-left: 1px solid rgba(235, 148, 134, 0.1);
+      }
+
+      .contact-info h3 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        color: var(--detail-color);
+      }
+
+      .contact-details {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .contact-item svg {
+        width: 24px;
+        height: 24px;
+        fill: var(--accent-color);
+      }
+
+      .contact-item p {
+        color: var(--text-color);
+        font-size: 1rem;
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 3.5rem;
+        }
+
+        .section-title h2 {
+          font-size: 2.5rem;
+        }
+
+        .portfolio-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .contact-section {
+          grid-template-columns: 1fr;
+          padding: 3rem;
+        }
+
+        .contact-info {
+          padding-left: 0;
+          border-left: none;
+          border-top: 1px solid rgba(235, 148, 134, 0.1);
+          padding-top: 2rem;
+        }
+
+        .nav-links {
+          display: none;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .portfolio-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .services-section {
+          padding: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <nav>
+        <div class="logo">INK SOCIETY</div>
+        <div class="nav-links">
+          <a href="#portfolio">Portfolio</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div data-aos="fade-up" data-aos-duration="1200">
+        <h1>Arte en tu piel</h1>
+        <p>Cada tatuaje cuenta una historia. Déjanos ser parte de la tuya.</p>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <div class="section-title" data-aos="fade-up">
+        <h2>Portfolio</h2>
+        <p>
+          Explora nuestra colección de trabajos y descubre nuestro estilo único
+        </p>
+      </div>
+      <div class="portfolio-grid">
+        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
+          <img
+            src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            alt="Tattoo 1"
+          />
+          <div class="portfolio-title">
+            <h3>Estilo Tradicional</h3>
+            <p>Diseños clásicos con un toque contemporáneo</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
+          <img
+            src="https://images.unsplash.com/photo-1562962230-16e4623d36e6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            alt="Tattoo 2"
+          />
+          <div class="portfolio-title">
+            <h3>Diseño Minimalista</h3>
+            <p>La belleza en la simplicidad</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="300">
+          <img
+            src="https://plus.unsplash.com/premium_photo-1661714220704-711551e73799?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dGF0dG9vfGVufDB8fDB8fHww"
+            alt="Tattoo 3"
+          />
+          <div class="portfolio-title">
+            <h3>Arte Realista</h3>
+            <p>Detalle y precisión en cada trazo</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicios">
+      <div class="section-title" data-aos="fade-up">
+        <h2>Servicios</h2>
+        <p>Ofrecemos una experiencia personalizada para cada cliente</p>
+      </div>
+      <div class="services-section">
+        <div class="services-grid">
+          <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+            <h3>Diseño Personalizado</h3>
+            <p>
+              Creamos diseños únicos que reflejen tu personalidad y estilo,
+              trabajando contigo para hacer realidad tu visión
+            </p>
+          </div>
+          <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+            <h3>Tatuajes</h3>
+            <p>
+              Especialistas en diversos estilos: tradicional, realismo,
+              minimalista. Cada pieza es una obra de arte única
+            </p>
+          </div>
+          <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+            <h3>Cover-ups</h3>
+            <p>
+              Transformamos tatuajes antiguos en nuevas obras de arte, dándoles
+              una segunda vida con creatividad y técnica
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="section-title" data-aos="fade-up">
+        <h2>Contacto</h2>
+        <p>Agenda tu consulta y comienza a hacer realidad tu proyecto</p>
+      </div>
+      <div class="contact-section">
+        <div class="contact-form" data-aos="fade-right">
+          <h3>Agenda tu Cita</h3>
+          <form>
+            <div class="form-group">
+              <input type="text" placeholder="Nombre" required />
+            </div>
+            <div class="form-group">
+              <input type="tel" placeholder="Teléfono" required />
+            </div>
+            <div class="form-group">
+              <input type="email" placeholder="Email" required />
+            </div>
+            <div class="form-group">
+              <textarea
+                placeholder="Cuéntanos tu idea"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+            <button type="submit">Enviar Mensaje</button>
+          </form>
+        </div>
+
+        <div class="contact-info" data-aos="fade-left">
+          <h3>Información</h3>
+          <div class="contact-details">
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                />
+              </svg>
+              <p>Dirección del estudio<br />Ciudad, Provincia</p>
+            </div>
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771z"
+                />
+              </svg>
+              <p>11 1111 1111</p>
+            </div>
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                />
+              </svg>
+              <p>info@inksociety.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        once: false,
+        mirror: true,
+        duration: 1000,
+        offset: 100,
+      });
+    </script>
+  </body>
+</html>

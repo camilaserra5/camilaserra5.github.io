@@ -714,6 +714,562 @@
           font-size: 1.3rem;
         }
       }
+
+      /* Add styles for portfolio section */
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .portfolio-card {
+        background: var(--light);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .portfolio-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .portfolio-image {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .portfolio-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .portfolio-card:hover .portfolio-image img {
+        transform: scale(1.1);
+      }
+
+      .portfolio-content {
+        padding: 1.5rem;
+      }
+
+      .portfolio-content h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+        color: var(--dark);
+      }
+
+      .portfolio-content p {
+        color: #666;
+        margin-bottom: 1rem;
+      }
+
+      .portfolio-tag {
+        display: inline-block;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        margin-right: 0.5rem;
+        background-color: var(--mint);
+        color: var(--mint-text);
+      }
+
+      /* Modal styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .modal.show {
+        display: block;
+        opacity: 1;
+      }
+
+      .modal-content {
+        position: relative;
+        background-color: var(--light);
+        margin: 5% auto;
+        padding: 20px;
+        width: 90%;
+        max-width: 800px;
+        border-radius: 12px;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+
+      .close-modal {
+        position: absolute;
+        right: 20px;
+        top: 15px;
+        font-size: 28px;
+        font-weight: bold;
+        color: #666;
+        cursor: pointer;
+        z-index: 1;
+      }
+
+      .close-modal:hover {
+        color: var(--dark);
+      }
+
+      .modal-body {
+        padding: 20px 0;
+      }
+
+      .modal-preview {
+        width: 100%;
+        height: 600px;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+        position: relative;
+        background: var(--light);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .modal-preview iframe {
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        border: none;
+      }
+
+      .preview-toolbar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 40px;
+        background: var(--dark);
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        gap: 8px;
+      }
+
+      .preview-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+
+      .preview-dot.red {
+        background-color: #ff5f57;
+      }
+      .preview-dot.yellow {
+        background-color: #ffbd2e;
+      }
+      .preview-dot.green {
+        background-color: #28c940;
+      }
+
+      .preview-address {
+        flex: 1;
+        margin-left: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        padding: 4px 8px;
+        color: #fff;
+        font-size: 0.9rem;
+      }
+
+      .preview-controls {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .preview-button {
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 4px;
+        background: var(--mint);
+        color: var(--mint-text);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+
+      .preview-button:hover {
+        background: var(--celadon);
+      }
+
+      .preview-button.active {
+        background: var(--melon);
+        color: white;
+      }
+
+      .modal-details h2 {
+        color: var(--dark);
+        margin-bottom: 1rem;
+      }
+
+      .modal-details p {
+        color: #666;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+      }
+
+      .modal-tags {
+        margin-bottom: 1.5rem;
+      }
+
+      .modal-link {
+        display: inline-block;
+        padding: 0.8rem 1.5rem;
+        background-color: var(--melon);
+        color: white;
+        text-decoration: none;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+      }
+
+      .modal-link:hover {
+        background-color: var(--melon-light);
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 768px) {
+        .portfolio-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .modal-content {
+          width: 95%;
+          margin: 10% auto;
+        }
+
+        .modal-preview {
+          height: 400px;
+        }
+
+        .preview-toolbar {
+          height: 32px;
+        }
+
+        .preview-dot {
+          width: 10px;
+          height: 10px;
+        }
+      }
+
+      /* Carousel styles */
+      .carousel-container {
+        position: relative;
+        overflow: hidden;
+        padding: 20px 0;
+      }
+
+      .carousel {
+        display: flex;
+        gap: 20px;
+        transition: transform 0.3s ease;
+        cursor: grab;
+      }
+
+      .carousel.dragging {
+        cursor: grabbing;
+        transition: none;
+      }
+
+      .carousel-item {
+        min-width: 300px;
+        flex: 0 0 300px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+
+      .carousel-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .carousel-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .carousel-item-content {
+        padding: 15px;
+        background: white;
+      }
+
+      .carousel-item h4 {
+        margin: 0 0 8px;
+        color: var(--dark);
+      }
+
+      .carousel-item p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      .carousel-nav {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .carousel-button {
+        background: var(--mint);
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .carousel-button:hover {
+        background: var(--celadon);
+        transform: scale(1.1);
+      }
+
+      .carousel-button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .carousel-button svg {
+        width: 24px;
+        height: 24px;
+        fill: var(--dark);
+      }
+
+      @media (max-width: 768px) {
+        .carousel-item {
+          min-width: 260px;
+          flex: 0 0 260px;
+        }
+      }
+
+      /* Estilos para las demos */
+      .demo-landing {
+        font-family: "Segoe UI", sans-serif;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .demo-header {
+        background: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
+        padding: 2rem;
+        border-radius: 15px;
+        margin-bottom: 2rem;
+      }
+
+      .demo-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 3rem;
+      }
+
+      .demo-logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+
+      .demo-menu {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .demo-link {
+        text-decoration: none;
+        color: #333;
+      }
+
+      .demo-button {
+        background: #333;
+        color: white;
+        padding: 0.8rem 1.5rem;
+        border-radius: 25px;
+        text-decoration: none;
+      }
+
+      .demo-hero {
+        text-align: center;
+        padding: 3rem 0;
+      }
+
+      .demo-hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .demo-hero p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+      }
+
+      .demo-cta {
+        background: #333;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .demo-features {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        padding: 2rem 0;
+      }
+
+      .demo-feature {
+        text-align: center;
+        padding: 2rem;
+        background: #f8f8f8;
+        border-radius: 15px;
+      }
+
+      .demo-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        display: inline-block;
+      }
+
+      /* Estilos para la tienda */
+      .demo-shop {
+        background: #fff;
+      }
+
+      .demo-header-shop {
+        background: #f8f8f8;
+        padding: 2rem;
+        text-align: center;
+      }
+
+      .demo-nav-shop {
+        margin-bottom: 3rem;
+      }
+
+      .demo-cart {
+        font-size: 1.5rem;
+        text-decoration: none;
+      }
+
+      .demo-products {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        padding: 2rem 0;
+      }
+
+      .demo-product {
+        text-align: center;
+      }
+
+      .demo-product img {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+      }
+
+      .demo-add-cart {
+        background: #333;
+        color: white;
+        border: none;
+        padding: 0.8rem 1.5rem;
+        border-radius: 25px;
+        cursor: pointer;
+      }
+
+      /* Estilos para el sistema de reservas */
+      .demo-booking {
+        background: #fff;
+      }
+
+      .demo-header-booking {
+        background: linear-gradient(45deg, #ffe6fa 0%, #e3fdf5 100%);
+        padding: 2rem;
+        border-radius: 15px;
+      }
+
+      .demo-booking-hero {
+        text-align: center;
+        padding: 3rem 0;
+      }
+
+      .demo-booking-form {
+        max-width: 500px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .demo-form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .demo-form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+
+      .demo-select,
+      .demo-input {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+      }
+
+      .demo-book-button {
+        width: 100%;
+        background: #333;
+        color: white;
+        border: none;
+        padding: 1rem;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+
+      @media (max-width: 768px) {
+        .demo-features,
+        .demo-products {
+          grid-template-columns: 1fr;
+        }
+
+        .demo-menu {
+          display: none;
+        }
+
+        .demo-hero h1 {
+          font-size: 2rem;
+        }
+      }
     </style>
   </head>
   <body>
@@ -810,6 +1366,83 @@
       </div>
     </section>
 
+    <section id="ejemplos" class="container">
+      <h2 class="section-title">Ejemplos de Nuestro Trabajo</h2>
+      <p class="section-subtitle">
+        Explora algunos de nuestros proyectos más recientes
+      </p>
+
+      <div class="carousel-container">
+        <div class="carousel">
+          <div class="carousel-item" data-template="landing1">
+            <img
+              src="https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
+              alt="Studio Pilates"
+            />
+            <div class="carousel-item-content">
+              <h4>Studio Pilates</h4>
+              <p>Landing page moderna para estudio de pilates</p>
+            </div>
+          </div>
+          <div class="carousel-item" data-template="landing2">
+            <img
+              src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
+              alt="Manicura y Esmaltado"
+            />
+            <div class="carousel-item-content">
+              <h4>Manicura y Esmaltado</h4>
+              <p>Diseño elegante para servicios de belleza</p>
+            </div>
+          </div>
+          <div class="carousel-item" data-template="landing3">
+            <img
+              src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
+              alt="INK SOCIETY"
+            />
+            <div class="carousel-item-content">
+              <h4>INK SOCIETY</h4>
+              <p>Landing page moderna para estudio de tatuajes</p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-nav">
+          <button class="carousel-button prev" disabled>
+            <svg viewBox="0 0 24 24">
+              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+            </svg>
+          </button>
+          <button class="carousel-button next">
+            <svg viewBox="0 0 24 24">
+              <path d="M10.59 6L12 7.41 16.17 12l-4.17 4.59L10.59 18l6-6z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal para mostrar detalles del proyecto -->
+    <div id="projectModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="modal-body">
+          <div class="modal-preview">
+            <div class="preview-toolbar">
+              <div class="preview-dot red"></div>
+              <div class="preview-dot yellow"></div>
+              <div class="preview-dot green"></div>
+              <div class="preview-address">Vista Previa</div>
+            </div>
+            <iframe id="previewFrame" src="" frameborder="0"></iframe>
+          </div>
+          <div class="preview-controls">
+            <a href="#" class="preview-button" id="openNewTab" target="_blank"
+              >Abrir en Nueva Pestaña</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
     <section id="contacto" class="cta">
       <div class="cta-content">
         <h2>¿Conversamos sobre tu proyecto?</h2>
@@ -905,6 +1538,81 @@
           isMobile = window.innerWidth <= 768;
           revealOnScroll();
         });
+
+        // Modal functionality
+        const modal = document.getElementById("projectModal");
+        const closeModal = document.querySelector(".close-modal");
+        const items = document.querySelectorAll(".carousel-item");
+        const previewFrame = document.getElementById("previewFrame");
+        const openNewTab = document.getElementById("openNewTab");
+
+        // Close modal when clicking on X
+        closeModal.addEventListener("click", function () {
+          modal.classList.remove("show");
+          document.body.style.overflow = "";
+          previewFrame.src = "";
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener("click", function (event) {
+          if (event.target === modal) {
+            modal.classList.remove("show");
+            document.body.style.overflow = "";
+            previewFrame.src = "";
+          }
+        });
+
+        // Open modal or redirect when clicking carousel items
+        items.forEach((item) => {
+          item.addEventListener("click", function () {
+            const templateId = this.dataset.template;
+            const landingUrl = templateId + ".html";
+
+            // En mobile, redirigir directamente
+            if (isMobile) {
+              window.location.href = landingUrl;
+              return;
+            }
+
+            // En desktop, abrir modal
+            previewFrame.src = landingUrl;
+            openNewTab.href = landingUrl;
+            modal.classList.add("show");
+            document.body.style.overflow = "hidden";
+          });
+        });
+
+        // Update mobile check on resize
+        window.addEventListener("resize", function () {
+          isMobile = window.innerWidth <= 768;
+        });
+
+        // Carousel functionality
+        const carousel = document.querySelector(".carousel");
+        const prevBtn = document.querySelector(".carousel-button.prev");
+        const nextBtn = document.querySelector(".carousel-button.next");
+        let currentIndex = 0;
+
+        function updateButtons() {
+          prevBtn.disabled = currentIndex === 0;
+          nextBtn.disabled = currentIndex === items.length - 1;
+        }
+
+        function slideCarousel(direction) {
+          const itemWidth = items[0].offsetWidth + 20; // width + gap
+          if (direction === "prev" && currentIndex > 0) {
+            currentIndex--;
+          } else if (direction === "next" && currentIndex < items.length - 1) {
+            currentIndex++;
+          }
+          carousel.style.transform = `translateX(${
+            -currentIndex * itemWidth
+          }px)`;
+          updateButtons();
+        }
+
+        prevBtn.addEventListener("click", () => slideCarousel("prev"));
+        nextBtn.addEventListener("click", () => slideCarousel("next"));
       });
     </script>
   </body>

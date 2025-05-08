@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manicura y Esmaltado</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      :root {
+        --primary-color: #2d3436;
+        --accent-color: #f8d9d5;
+        --bg-light: #faf6f6;
+        --text-color: #4a4a4a;
+        --gray-color: #6c757d;
+        --spacing-xl: 8rem;
+        --spacing-lg: 5rem;
+        --spacing-md: 2rem;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        line-height: 1.8;
+        color: var(--text-color);
+        font-family: "Montserrat", sans-serif;
+        background-color: #fff;
+      }
+
+      .header {
+        background-color: rgba(255, 255, 255, 0.95);
+        padding: 1.2rem;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        letter-spacing: 1px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 3rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--primary-color);
+        font-size: 0.95rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+      }
+
+      section {
+        padding: var(--spacing-xl) var(--spacing-md);
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .services-intro {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .services-intro h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--primary-color);
+      }
+
+      .services-intro p {
+        max-width: 800px;
+        margin: 0 auto;
+        color: var(--gray-color);
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-top: 4rem;
+      }
+
+      .service-card {
+        text-align: center;
+      }
+
+      .service-card img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 1.5rem;
+      }
+
+      .service-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--primary-color);
+      }
+
+      .service-card p {
+        color: var(--gray-color);
+        margin-bottom: 1rem;
+      }
+
+      .service-card .discover-more {
+        color: #e84393;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .contact-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        background: linear-gradient(to right, var(--accent-color), #fff);
+        padding: 4rem;
+        border-radius: 15px;
+        margin-top: 4rem;
+      }
+
+      .contact-form {
+        background: white;
+        padding: 3rem;
+        border-radius: 15px;
+      }
+
+      .contact-form h3 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        color: var(--primary-color);
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--gray-color);
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border-color: var(--accent-color);
+      }
+
+      button {
+        background-color: #333;
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: var(--primary-color);
+      }
+
+      .contact-info h3 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .contact-details {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .contact-item svg {
+        width: 24px;
+        height: 24px;
+        fill: var(--primary-color);
+      }
+
+      .hero {
+        height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+          url("https://images.unsplash.com/photo-1610992015732-2449b76344bc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: white;
+        margin-bottom: 0;
+        position: relative;
+        margin-top: 60px;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 150px;
+        background: linear-gradient(to top, #fff, transparent);
+      }
+
+      .hero h1 {
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+        max-width: 700px;
+        margin: 0 auto;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      @media (max-width: 768px) {
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-section {
+          grid-template-columns: 1fr;
+          padding: 2rem;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .hero {
+          height: 100vh;
+          padding: 0 1rem;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+          padding: 0 1rem;
+          margin-bottom: 2rem;
+        }
+
+        .hero p {
+          font-size: 1.1rem;
+          padding: 0 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero {
+          height: 100vh;
+          padding: 0 0.5rem;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+          padding: 0 0.5rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+          padding: 0 0.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <nav>
+        <div class="logo">Manicura y Esmaltado</div>
+        <div class="nav-links">
+          <a href="#servicios">Servicios</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div data-aos="fade-up" data-aos-duration="1200">
+        <h1>El arte de cuidar tus manos</h1>
+        <p>
+          Descubre una experiencia única de belleza y cuidado personal con
+          nuestros servicios de manicura profesional
+        </p>
+      </div>
+    </section>
+
+    <section id="servicios">
+      <div class="services-intro" data-aos="fade-up">
+        <h2>Nuestros Servicios</h2>
+        <p>
+          Nuestros productos y servicios se basan en tres pilares fundamentales:
+          Innovación y adaptabilidad, Sostenibilidad, y Seguridad y Salubridad.
+          Es toda una experiencia de belleza y autocuidado.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+          <img
+            src="https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            alt="Manicura"
+          />
+          <h3>Manicura</h3>
+          <p>
+            ¡Tus manos hablan de ti! Cuídalas con nuestros servicios de
+            manicura: limar y esmaltar, manicura básica, manicura SPA, etc.
+          </p>
+          <a href="#" class="discover-more">Descubre más</a>
+        </div>
+
+        <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+          <img
+            src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            alt="Esmalte Permanente"
+          />
+          <h3>Esmalte Permanente</h3>
+          <p>
+            La novedosa técnica que ha revolucionado el mundo de las uñas: el
+            único esmaltado permanente del mercado de larga duración y 10Free.
+          </p>
+          <a href="#" class="discover-more">Descubre más</a>
+        </div>
+
+        <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+          <img
+            src="https://images.unsplash.com/photo-1720343409646-960f6dcccae3?q=80&w=1827&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Uñas Esculpidas"
+          />
+          <h3>Uñas Esculpidas</h3>
+          <p>
+            Uñas esculpidas con las mejores técnicas del mercado: uñas de gel,
+            uñas en acrílico... ¡Ponte en buenas manos!
+          </p>
+          <a href="#" class="discover-more">Descubre más</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="contact-section">
+        <div class="contact-form" data-aos="fade-right">
+          <h3>ENVIANOS TU CONSULTA</h3>
+          <form>
+            <div class="form-group">
+              <label>Nombre</label>
+              <input type="text" required />
+            </div>
+            <div class="form-group">
+              <label>Teléfono</label>
+              <input type="tel" required />
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" required />
+            </div>
+            <div class="form-group">
+              <label>Mensaje</label>
+              <textarea rows="5" required></textarea>
+            </div>
+            <button type="submit">Enviar</button>
+          </form>
+        </div>
+
+        <div class="contact-info" data-aos="fade-left">
+          <h3>CONTACTO</h3>
+          <div class="contact-details">
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                />
+              </svg>
+              <p>Dirección<br />Localidad/ provincia</p>
+            </div>
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771z"
+                />
+              </svg>
+              <p>11 1111 1111</p>
+            </div>
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                />
+              </svg>
+              <p>tumail@gmail.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        once: false,
+        mirror: true,
+        duration: 1000,
+        offset: 100,
+      });
+    </script>
+  </body>
+</html>
